@@ -1,103 +1,3 @@
-[![Build Status](https://travis-ci.org/ItsAsbreuk/itsa-react-maskedinput.svg?branch=master)](https://travis-ci.org/ItsAsbreuk/itsa-react-maskedinput)
-
-Beautiful functional masked input-element for react.
-Thanks to https://www.npmjs.com/package/react-maskedinput
-
-For all `mask`-options, see: https://github.com/insin/inputmask-core#pattern
-
-## How to use:
-
-```js
-const ReactDOM = require("react-dom"),
-      MaskedInput = require("itsa-react-maskedinput");
-
-let props = {
-    phone: ''
-};
-
-const handleChange = e => {
-    props.phone = e.target.value;
-    renderMaskedInput();
-};
-
-const renderTextarea = () => {
-    ReactDOM.render(
-        <MaskedInput
-            onChange={props.handleChange}
-            mask="(111) 111-1111"
-            value={props.phone} />
-        document.getElementById("container")
-    );
-};
-
-renderMaskedInput();
-```
-
-## About the css
-
-You need the right css in order to make use of `itsa-react-maskedinput`. There are 2 options:
-
-1. You can use the css-files inside the `css`-folder.
-2. You can use: `Component = require("itsa-react-maskedinput/lib/component-styled.jsx");` and build your project with `webpack`. This is needed, because you need the right plugin to handle a requirement of the `scss`-file.
-
-
-[API](http://projects.itsasbreuk.nl/react-components/itsa-maskedinput/api/)
-
-## Sophisticated forms
-
-In adjunction with other `itsa-react-components`, you can build very sophisticated forms:
-[example sophisticated form with validation](http://projects.itsasbreuk.nl/react-components/itsa-maskedinput/component.html)
-
-This example has the following code:
-
-####css
-```css
-body {
-    padding: 2em;
-}
-#component-container {
-    width: 20em;
-    border: solid 1px #AAA;
-    padding: 1em;
-    background-color: #FAFAFA;
-    margin: 3em auto;
-}
-#component-container button {
-    width: 100%;
-    text-align: center;
-    margin-top: 1em;
-}
-#component-container form.invalid .formheader {
-    color: #F34F4F;
-}
-#component-container .checkbox-text {
-    color: #F34F4F;
-    visibility: hidden;
-    margin-top: 0.4em;
-    font-size: 0.8em;
-}
-#component-container .checkbox-error-text.checkbox-text {
-    visibility: visible;
-}
-#component-container .itsa-input.last {
-    margin-bottom: 1.4em;
-}
-#component-container .itsa-checkbox {
-    margin-right: 0.5em;
-}
-#component-container .form-text {
-    color: #444;
-}
-```
-
-####html
-```html
-<div id="component-container"></div>
-<script src="./app.js"></script>
-```
-
-####app.js
-```js
 "use strict";
 
 import "purecss";
@@ -112,9 +12,9 @@ import "itsa-react-textarea/css/component.scss";
 const React = require("react"),
     ReactDOM = require("react-dom"),
     Input = require("itsa-react-input"),
-    MaskedInput = require("itsa-react-maskedinput"),
     Checkbox = require("itsa-react-checkbox"),
     Textarea = require("itsa-react-textarea"),
+    MaskedInput = require("./lib/component-styled.jsx"),
     REG_EXP_PHONE = /^\(\d{0,3}\) \d{0,3}\-\d{0,4}$/;
 
 
@@ -263,7 +163,7 @@ const MyForm = React.createClass({
                     </div>
                     <button
                         className="pure-button pure-button-primary"
-                        tabIndex={8}
+                        tabIndex={5}
                         type="submit" >
                         Validate Form
                     </button>
@@ -411,4 +311,3 @@ const renderForm = props => {
  *******************************************************/
 validateProps(props);
 renderForm(props);
-```

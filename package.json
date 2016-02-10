@@ -1,6 +1,6 @@
 {
   "name": "itsa-react-maskedinput",
-  "version": "0.0.4",
+  "version": "0.1.1",
   "description": "Beautiful functional masked input-element for react",
   "author": [
     {
@@ -31,7 +31,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "itsa-react-input": "^0.0.8",
+    "itsa-react-input": "^0.2.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-maskedinput": "^3.0.0"

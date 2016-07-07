@@ -14,10 +14,11 @@
  * @since 2.0.0
 */
 
-import React, {PropTypes} from "react";
-import ReactDOM from "react-dom";
-import Input from "itsa-react-input";
-import ReactMaskedInput from "react-maskedinput";
+const React = require("react"),
+    PropTypes = React.PropTypes,
+    ReactDOM = require("react-dom"),
+    Input = require("itsa-react-input"),
+    ReactMaskedInput = require("react-maskedinput");
 
 const ON = 'on',
       KEY = "key",
@@ -38,6 +39,15 @@ const MaskedInput = React.createClass({
          * @since 0.0.1
         */
         autoFocus: PropTypes.bool,
+
+        /**
+         * The class that should be set on the element
+         *
+         * @property className
+         * @type String
+         * @since 0.0.1
+        */
+        className: PropTypes.string,
 
         /**
          * The error-message that appears when the element is wrong validated.
@@ -116,7 +126,7 @@ const MaskedInput = React.createClass({
         /**
          * The `onBlur` function, when happening on the DOM-Element.
          *
-         * @property onChange
+         * @property onBlur
          * @type Function
          * @since 0.1.0
         */
@@ -134,7 +144,7 @@ const MaskedInput = React.createClass({
         /**
          * The `onClick` function, when happening on the DOM-Element.
          *
-         * @property onChange
+         * @property onClick
          * @type Function
          * @since 0.0.1
         */
@@ -143,11 +153,47 @@ const MaskedInput = React.createClass({
         /**
          * The `onFocus` function, when happening on the DOM-Element.
          *
-         * @property onChange
+         * @property onFocus
          * @type Function
          * @since 0.1.0
         */
         onFocus: PropTypes.func,
+
+        /**
+         * The `onKeyDown` function, when happening on the DOM-Element.
+         *
+         * @property onKeyDown
+         * @type Function
+         * @since 0.1.0
+        */
+        onKeyDown: PropTypes.func,
+
+        /**
+         * The `onKeyEnter` function, when the enter-key is pressed.
+         *
+         * @property onKeyEnter
+         * @type Function
+         * @since 0.1.0
+        */
+        onKeyEnter: PropTypes.func,
+
+        /**
+         * The `onKeyPress` function, when happening on the DOM-Element.
+         *
+         * @property onKeyPress
+         * @type Function
+         * @since 0.1.0
+        */
+        onKeyPress: PropTypes.func,
+
+        /**
+         * The `onKeyUp` function, when happening on the DOM-Element.
+         *
+         * @property onKeyUp
+         * @type Function
+         * @since 0.1.0
+        */
+        onKeyUp: PropTypes.func,
 
         /**
          * The `placeholder` for the element.
@@ -159,13 +205,22 @@ const MaskedInput = React.createClass({
         placeholder: PropTypes.string,
 
         /**
+         * Inline style
+         *
+         * @property style
+         * @type object
+         * @since 0.0.1
+        */
+        style: PropTypes.object,
+
+        /**
          * The `type` of the input-element: either `text` or `password`
          *
          * @property type
          * @type String
          * @since 0.0.1
         */
-        type: React.PropTypes.oneOf(['text','password']),
+        type: React.PropTypes.oneOf(["text", "password"]),
 
         /**
          * The tabindex of the Component.
@@ -265,6 +320,18 @@ const MaskedInput = React.createClass({
     },
 
     /**
+     * Sets the focus on the Component.
+     *
+     * @method focus
+     * @param [transitionTime] {Number} transition-time to focus the element into the view
+     * @chainable
+     * @since 0.0.1
+     */
+    focus(transitionTime) {
+        return this.refs["input-element"].focus(transitionTime);
+    },
+
+    /**
      * Gets the Component"s internal state. Note, that the this is NOT Redux"s state.
      *
      * @method getInitialState
@@ -350,7 +417,7 @@ const MaskedInput = React.createClass({
      * @since 0.0.1
      */
     render() {
-        return <Input {...this.props} element={this.element} />;
+        return <Input {...this.props} element={this.element} ref="input-element" />;
     },
 
     /**

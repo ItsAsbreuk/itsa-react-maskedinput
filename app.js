@@ -247,7 +247,7 @@ const validatorsDefinition = {
 };
 
 const validateProps = props => {
-    props.each((value, key) => {
+    props.itsa_each((value, key) => {
         // only inspect primary type-properties
         if (typeof props[key]!=="object") {
             props.validated[key] = validate(props[key], props.validators[key]);

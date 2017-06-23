@@ -15,7 +15,7 @@
 */
 
 const React = require("react"),
-    PropTypes = React.PropTypes,
+    PropTypes = require("prop-types"),
     ReactDOM = require("react-dom"),
     Input = require("itsa-react-input"),
     ReactMaskedInput = require("react-maskedinput");
@@ -28,227 +28,18 @@ const ON = 'on',
 
 let IE8_Events;
 
-const MaskedInput = React.createClass({
-
-    propTypes: {
-        /**
-         * Whether to autofocus the Component.
-         *
-         * @property autoFocus
-         * @type Boolean
-         * @since 0.0.1
-        */
-        autoFocus: PropTypes.bool,
-
-        /**
-         * The class that should be set on the element
-         *
-         * @property className
-         * @type String
-         * @since 0.0.1
-        */
-        className: PropTypes.string,
-
-        /**
-         * The error-message that appears when the element is wrong validated.
-         *
-         * @property errorMsg
-         * @type String
-         * @since 0.0.1
-        */
-        errorMsg: PropTypes.string,
-
-        /**
-         * Whether the parent-form has been validated.
-         * This value is needed to determine if the validate-status should be set.
-         *
-         * @property formValidated
-         * @type Boolean
-         * @since 0.0.1
-        */
-        formValidated: PropTypes.bool,
-
-        /**
-         * The text that should appear when the element is wrong validated.
-         *
-         * @property helpText
-         * @type String
-         * @since 0.0.1
-        */
-        helpText: PropTypes.string,
-
-        /**
-         * The `id` of the element.
-         *
-         * @property id
-         * @type String
-         * @since 0.0.1
-        */
-        id: PropTypes.string,
-
-        /**
-         * Whether to mark the Component when successfully validated.
-         *
-         * @property markValidated
-         * @type Boolean
-         * @since 0.0.1
-        */
-        markValidated: PropTypes.bool,
-
-        /**
-         * Whether the Component should show an validate-reclamation (star)
-         *
-         * @property markValidated
-         * @type Boolean
-         * @since 0.0.1
-        */
-        markRequired: PropTypes.bool,
-
-        /**
-         * The `mask` that determines the pattern.
-         * See https://github.com/insin/inputmask-core#pattern
-         *
-         * @property mask
-         * @type String
-         * @since 0.0.1
-        */
-        mask: PropTypes.string.isRequired,
-
-        /**
-         * The `name` for the element.
-         *
-         * @property name
-         * @type String
-         * @since 0.0.1
-        */
-        name: PropTypes.string,
-
-        /**
-         * The `onBlur` function, when happening on the DOM-Element.
-         *
-         * @property onBlur
-         * @type Function
-         * @since 0.1.0
-        */
-        onBlur: PropTypes.func,
-
-        /**
-         * The `onChange` function, which should update the `state`.
-         *
-         * @property onChange
-         * @type Function
-         * @since 0.0.1
-        */
-        onChange: PropTypes.func.isRequired,
-
-        /**
-         * The `onClick` function, when happening on the DOM-Element.
-         *
-         * @property onClick
-         * @type Function
-         * @since 0.0.1
-        */
-        onClick: PropTypes.func,
-
-        /**
-         * The `onFocus` function, when happening on the DOM-Element.
-         *
-         * @property onFocus
-         * @type Function
-         * @since 0.1.0
-        */
-        onFocus: PropTypes.func,
-
-        /**
-         * The `onKeyDown` function, when happening on the DOM-Element.
-         *
-         * @property onKeyDown
-         * @type Function
-         * @since 0.1.0
-        */
-        onKeyDown: PropTypes.func,
-
-        /**
-         * The `onKeyEnter` function, when the enter-key is pressed.
-         *
-         * @property onKeyEnter
-         * @type Function
-         * @since 0.1.0
-        */
-        onKeyEnter: PropTypes.func,
-
-        /**
-         * The `onKeyPress` function, when happening on the DOM-Element.
-         *
-         * @property onKeyPress
-         * @type Function
-         * @since 0.1.0
-        */
-        onKeyPress: PropTypes.func,
-
-        /**
-         * The `onKeyUp` function, when happening on the DOM-Element.
-         *
-         * @property onKeyUp
-         * @type Function
-         * @since 0.1.0
-        */
-        onKeyUp: PropTypes.func,
-
-        /**
-         * The `placeholder` for the element.
-         *
-         * @property placeholder
-         * @type String
-         * @since 0.0.1
-        */
-        placeholder: PropTypes.string,
-
-        /**
-         * Inline style
-         *
-         * @property style
-         * @type object
-         * @since 0.0.1
-        */
-        style: PropTypes.object,
-
-        /**
-         * The `type` of the input-element: either `text` or `password`
-         *
-         * @property type
-         * @type String
-         * @since 0.0.1
-        */
-        type: React.PropTypes.oneOf(["text", "password"]),
-
-        /**
-         * The tabindex of the Component.
-         *
-         * @property type
-         * @type Number
-         * @since 0.0.1
-        */
-        tabIndex: PropTypes.number,
-
-        /**
-         * Whether the property is validated right.
-         *
-         * @property validated
-         * @type Boolean
-         * @since 0.0.1
-        */
-        validated: PropTypes.bool,
-
-        /**
-         * The `value` of the input-element.
-         *
-         * @property value
-         * @type String
-         * @since 0.0.1
-        */
-        value: PropTypes.string
-    },
+class MaskedInput extends React.Component {
+    constructor(props) {
+        super(props);
+        const instance = this;
+        instance.detachEvents = instance.detachEvents.bind(instance);
+        instance.element = instance.element.bind(instance);
+        instance.focus = instance.focus.bind(instance);
+        instance.handleKeyDown = instance.handleKeyDown.bind(instance);
+        instance.handleKeyUp = instance.handleKeyUp.bind(instance);
+        instance.handleKeyPress = instance.handleKeyPress.bind(instance);
+        instance.setEvents = instance.setEvents.bind(instance);
+    }
 
     /**
      * Gets invoked after the Component mounted.
@@ -262,7 +53,7 @@ const MaskedInput = React.createClass({
         instance._node = ReactDOM.findDOMNode(this);
         IE8_Events = !instance._node.addEventListener;
         instance.setEvents();
-    },
+    }
 
     /**
      * Gets invoked before the Component gets unmounted.
@@ -273,7 +64,7 @@ const MaskedInput = React.createClass({
      */
     componentWillUnmount() {
         this.detachEvents();
-    },
+    }
 
     /**
      * Detaches eventlisteners.
@@ -295,7 +86,7 @@ const MaskedInput = React.createClass({
             instance._node.removeEventListener(KEYPRESS, this.handleKeyPress, true);
         }
         return instance;
-    },
+    }
 
     /**
      * Returns the rendered React-Element that serves as the source dom-element
@@ -317,7 +108,7 @@ const MaskedInput = React.createClass({
             maskComponent.mask.setValue();
         }
         return (<ReactMaskedInput mask={this.props.mask} ref="mask" {...inputProps} type={type} />);
-    },
+    }
 
     /**
      * Sets the focus on the Component.
@@ -329,7 +120,7 @@ const MaskedInput = React.createClass({
      */
     focus(transitionTime) {
         return this.refs["input-element"].focus(transitionTime);
-    },
+    }
 
     /**
      * Gets the Component"s internal state. Note, that the this is NOT Redux"s state.
@@ -385,7 +176,7 @@ const MaskedInput = React.createClass({
      */
     handleKeyDown(e) {
         this.props.onKeyDown && this.props.onKeyDown(e);
-    },
+    }
 
     /**
      * The method that is called whenever the input-Element gets a keyUp-event.
@@ -396,7 +187,7 @@ const MaskedInput = React.createClass({
      */
     handleKeyUp(e) {
         this.props.onKeyUp && this.props.onKeyUp(e);
-    },
+    }
 
     /**
      * The method that is called whenever the input-Element gets a keyPress-event.
@@ -407,7 +198,7 @@ const MaskedInput = React.createClass({
      */
     handleKeyPress(e) {
         this.props.onKeyPress && this.props.onKeyPress(e);
-    },
+    }
 
     /**
      * React render-method --> renderes the Component.
@@ -418,7 +209,7 @@ const MaskedInput = React.createClass({
      */
     render() {
         return <Input {...this.props} element={this.element} ref="input-element" />;
-    },
+    }
 
     /**
      * Sets eventlisteners.
@@ -442,6 +233,226 @@ const MaskedInput = React.createClass({
         return instance;
     }
 
-});
+}
+
+MaskedInput.propTypes = {
+    /**
+     * Whether to autofocus the Component.
+     *
+     * @property autoFocus
+     * @type Boolean
+     * @since 0.0.1
+    */
+    autoFocus: PropTypes.bool,
+
+    /**
+     * The class that should be set on the element
+     *
+     * @property className
+     * @type String
+     * @since 0.0.1
+    */
+    className: PropTypes.string,
+
+    /**
+     * The error-message that appears when the element is wrong validated.
+     *
+     * @property errorMsg
+     * @type String
+     * @since 0.0.1
+    */
+    errorMsg: PropTypes.string,
+
+    /**
+     * Whether the parent-form has been validated.
+     * This value is needed to determine if the validate-status should be set.
+     *
+     * @property formValidated
+     * @type Boolean
+     * @since 0.0.1
+    */
+    formValidated: PropTypes.bool,
+
+    /**
+     * The text that should appear when the element is wrong validated.
+     *
+     * @property helpText
+     * @type String
+     * @since 0.0.1
+    */
+    helpText: PropTypes.string,
+
+    /**
+     * The `id` of the element.
+     *
+     * @property id
+     * @type String
+     * @since 0.0.1
+    */
+    id: PropTypes.string,
+
+    /**
+     * Whether to mark the Component when successfully validated.
+     *
+     * @property markValidated
+     * @type Boolean
+     * @since 0.0.1
+    */
+    markValidated: PropTypes.bool,
+
+    /**
+     * Whether the Component should show an validate-reclamation (star)
+     *
+     * @property markValidated
+     * @type Boolean
+     * @since 0.0.1
+    */
+    markRequired: PropTypes.bool,
+
+    /**
+     * The `mask` that determines the pattern.
+     * See https://github.com/insin/inputmask-core#pattern
+     *
+     * @property mask
+     * @type String
+     * @since 0.0.1
+    */
+    mask: PropTypes.string.isRequired,
+
+    /**
+     * The `name` for the element.
+     *
+     * @property name
+     * @type String
+     * @since 0.0.1
+    */
+    name: PropTypes.string,
+
+    /**
+     * The `onBlur` function, when happening on the DOM-Element.
+     *
+     * @property onBlur
+     * @type Function
+     * @since 0.1.0
+    */
+    onBlur: PropTypes.func,
+
+    /**
+     * The `onChange` function, which should update the `state`.
+     *
+     * @property onChange
+     * @type Function
+     * @since 0.0.1
+    */
+    onChange: PropTypes.func.isRequired,
+
+    /**
+     * The `onClick` function, when happening on the DOM-Element.
+     *
+     * @property onClick
+     * @type Function
+     * @since 0.0.1
+    */
+    onClick: PropTypes.func,
+
+    /**
+     * The `onFocus` function, when happening on the DOM-Element.
+     *
+     * @property onFocus
+     * @type Function
+     * @since 0.1.0
+    */
+    onFocus: PropTypes.func,
+
+    /**
+     * The `onKeyDown` function, when happening on the DOM-Element.
+     *
+     * @property onKeyDown
+     * @type Function
+     * @since 0.1.0
+    */
+    onKeyDown: PropTypes.func,
+
+    /**
+     * The `onKeyEnter` function, when the enter-key is pressed.
+     *
+     * @property onKeyEnter
+     * @type Function
+     * @since 0.1.0
+    */
+    onKeyEnter: PropTypes.func,
+
+    /**
+     * The `onKeyPress` function, when happening on the DOM-Element.
+     *
+     * @property onKeyPress
+     * @type Function
+     * @since 0.1.0
+    */
+    onKeyPress: PropTypes.func,
+
+    /**
+     * The `onKeyUp` function, when happening on the DOM-Element.
+     *
+     * @property onKeyUp
+     * @type Function
+     * @since 0.1.0
+    */
+    onKeyUp: PropTypes.func,
+
+    /**
+     * The `placeholder` for the element.
+     *
+     * @property placeholder
+     * @type String
+     * @since 0.0.1
+    */
+    placeholder: PropTypes.string,
+
+    /**
+     * Inline style
+     *
+     * @property style
+     * @type object
+     * @since 0.0.1
+    */
+    style: PropTypes.object,
+
+    /**
+     * The `type` of the input-element: either `text` or `password`
+     *
+     * @property type
+     * @type String
+     * @since 0.0.1
+    */
+    type: React.PropTypes.oneOf(["text", "password"]),
+
+    /**
+     * The tabindex of the Component.
+     *
+     * @property type
+     * @type Number
+     * @since 0.0.1
+    */
+    tabIndex: PropTypes.number,
+
+    /**
+     * Whether the property is validated right.
+     *
+     * @property validated
+     * @type Boolean
+     * @since 0.0.1
+    */
+    validated: PropTypes.bool,
+
+    /**
+     * The `value` of the input-element.
+     *
+     * @property value
+     * @type String
+     * @since 0.0.1
+    */
+    value: PropTypes.string
+};
 
 module.exports = MaskedInput;

@@ -1,19 +1,16 @@
 "use strict";
 
 import "purecss";
-import "js-ext/lib/object";
-import "js-ext/lib/string";
+import "itsa-jsext";
 
 import "itsa-react-checkbox/css/component.scss";
 import "itsa-react-input/css/component.scss";
 import "itsa-react-input/css/purecss-component.scss";
-import "itsa-react-textarea/css/component.scss";
 
 const React = require("react"),
     ReactDOM = require("react-dom"),
     Input = require("itsa-react-input"),
     Checkbox = require("itsa-react-checkbox"),
-    Textarea = require("itsa-react-textarea"),
     MaskedInput = require("./lib/component-styled.jsx"),
     REG_EXP_PHONE = /^\(\d{0,3}\) \d{0,3}\-\d{0,4}$/;
 
@@ -21,7 +18,18 @@ const React = require("react"),
 /*******************************************************
  * Custom form-Component
  *******************************************************/
-const MyForm = React.createClass({
+class MyForm extends React.Component {
+    constructor(props) {
+        super(props);
+        const instance = this;
+        instance.state = {
+            formValid: false,
+            formValidated: false
+        };
+        instance.focusUnvalidated = instance.focusUnvalidated.bind(instance);
+        instance.formValid = instance.formValid.bind(instance);
+        instance.handleSubmit = instance.handleSubmit.bind(instance);
+    }
 
     focusUnvalidated() {
         const instance = this;
@@ -41,20 +49,12 @@ const MyForm = React.createClass({
         else if (!validated.termsAccepted) {
             instance.refs.terms.focus();
         }
-    },
+    }
 
     formValid() {
         const validated = this.props.validated;
         return validated.name && validated.email && validated.phone  && validated.password && validated.termsAccepted;
-    },
-
-    getInitialState() {
-        return {
-            formValid: false,
-            formValidated: false
-        };
-    },
-
+    }
 
     handleSubmit(e) {
         const formValid = this.formValid();
@@ -67,7 +67,7 @@ const MyForm = React.createClass({
             formValid,
             target: this
         });
-    },
+    }
 
     render() {
         let formClass = "pure-form pure-form-stacked";
@@ -140,13 +140,6 @@ const MyForm = React.createClass({
                         type="password"
                         validated={props.validated.password}
                         value={props.password} />
-                    <Textarea
-                        className="pure-input-1 last"
-                        onChange={props.onChangeComment}
-                        placeholder="Comment"
-                        ref="comment"
-                        tabIndex={6}
-                        value={props.comment} />
                     <Checkbox
                         checked={props.termsAccepted}
                         formValidated={formValidated}
@@ -172,7 +165,7 @@ const MyForm = React.createClass({
         );
     }
 
-});
+}
 
 
 /*******************************************************
@@ -230,7 +223,7 @@ const validatorsDefinition = {
     },
 
     email(val) {
-        return val.validateEmail(); // comes from itsa/lib/string
+        return val.itsa_isValidEmail(); // comes from itsa-jsext
     },
 
     password(val) {

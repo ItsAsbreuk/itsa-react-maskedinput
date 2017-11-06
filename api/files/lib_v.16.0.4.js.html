@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib/component.jsx - itsa-react-maskedinput</title>
+    <title>lib/v.16.0.4.js - itsa-react-maskedinput</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,7 +79,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: lib/component.jsx</h1>
+<h1 class="file-heading">File: lib/v.16.0.4.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -104,20 +104,12 @@ const React = require(&quot;react&quot;),
     Input = require(&quot;itsa-react-input&quot;),
     ReactMaskedInput = require(&quot;react-maskedinput&quot;);
 
-const ON = &#x27;on&#x27;,
-      KEY = &quot;key&quot;,
-      KEYDOWN = KEY + &quot;down&quot;,
-      KEYUP = KEY + &quot;up&quot;,
-      KEYPRESS = KEY + &quot;press&quot;;
+class MaskedInput extends Input {
 
-let IE8_Events;
-
-class MaskedInput extends React.Component {
-    constructor(props) {
-        super(props);
-        const instance = this;
-        instance.element = instance.element.bind(instance);
-        instance.focus = instance.focus.bind(instance);
+    getAdditionalProps() {
+        return {
+            mask: this.props.mask
+        };
     }
 
     /**
@@ -128,97 +120,12 @@ class MaskedInput extends React.Component {
      * @return ReactComponent
      * @since 0.0.4
      */
-    element(inputProps) {
-        // in case we are using &#x60;react-maskedinput&#x60;, then it doesn&quot;t accept an empty value
-        // once it already has content. This makes it impossible to emtpy.
-        // therefore we need to empty the maks by hacking it:
-
-        const instance = this,
-             type = (instance.props.type===&quot;password&quot;) ? &quot;password&quot; : &quot;text&quot;,
-              maskComponent = instance._maskComponent; // only there when already rendered before
-
-        if (maskComponent &amp;&amp; !inputProps.value) {
+    getDefinedComponent(hasValue) {
+        const maskComponent = this._inputElement; // only there when already rendered before
+        if (maskComponent &amp;&amp; !hasValue) {
             maskComponent.mask.setValue();
         }
-        return (
-            &lt;ReactMaskedInput mask={this.props.mask}
-                              ref={inst =&gt; instance._maskComponent = inst}
-                              {...inputProps}
-                              type={type} /&gt;
-            );
-    }
-
-    /**
-     * Sets the focus on the Component.
-     *
-     * @method focus
-     * @param [transitionTime] {Number} transition-time to focus the element into the view
-     * @chainable
-     * @since 0.0.1
-     */
-    focus(transitionTime) {
-        return this._inputElement.focus(transitionTime);
-    }
-
-    /**
-     * Gets the Component&quot;s internal state. Note, that the this is NOT Redux&quot;s state.
-     *
-     * @method getInitialState
-     * @return Object the Component internal initial state
-     * @since 0.0.1
-     */
-
-    /**
-     * Sets the focus on the Component.
-     *
-     * @method focus
-     * @chainable
-     * @since 0.0.1
-     */
-
-    /**
-     * The method that is called whenever the input-Element changes its value.
-     * Will update the Redux-store (signupuser.homeaddress);
-     *
-     * @method handleChange
-     * @param e {Object} event-payload
-     * @since 0.0.1
-     */
-
-    /**
-     * The method that is called whenever the input-Element gets the focus.
-     * It will change its internal state, so that the css looks right and
-     * also any validation-messages disappear.
-     *
-     * @method handleFocus
-     * @param e {Object} event-payload
-     * @since 0.0.1
-     */
-
-    /**
-     * The method that is called whenever the input-Element gets blurred.
-     * It will change its internal state, so that the css looks right and
-     * also any validation-messages appear.
-     *
-     * @method handleBlur
-     * @param e {Object} event-payload
-     * @since 0.0.1
-     */
-
-    /**
-     * React render-method --&gt; renderes the Component.
-     *
-     * @method render
-     * @return ReactComponent
-     * @since 0.0.1
-     */
-    render() {
-        const instance = this;
-        return (&lt;Input
-            {...instance.props}
-            element={instance.element}
-            ref={inst =&gt; instance._inputElement = inst} /&gt;)
-        ;
+        return ReactMaskedInput;
     }
 }
 

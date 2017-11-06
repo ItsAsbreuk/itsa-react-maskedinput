@@ -8,6 +8,24 @@
     "files": {
         "lib/component.jsx": {
             "name": "lib/component.jsx",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/itsa-react-input-4.16.0.4.js": {
+            "name": "lib/itsa-react-input-4.16.0.4.js",
+            "modules": {
+                "itsa-react-input": 1
+            },
+            "classes": {
+                "Input": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/v.16.0.4.js": {
+            "name": "lib/v.16.0.4.js",
             "modules": {
                 "itsa-react-maskedinput": 1
             },
@@ -29,10 +47,25 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "lib/component.jsx",
+            "file": "lib/v.16.0.4.js",
             "line": 3,
             "description": "Description here\n\n\n\n<i>Copyright (c) 2016 ItsAsbreuk - http://itsasbreuk.nl</i><br>\nNew BSD License - http://choosealicense.com/licenses/bsd-3-clause/",
             "since": "2.0.0"
+        },
+        "itsa-react-input": {
+            "name": "itsa-react-input",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Input": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 3,
+            "description": "Description here\n\n\n\n<i>Copyright (c) 2016 ItsAsbreuk - http://itsasbreuk.nl</i><br>\nNew BSD License - http://choosealicense.com/licenses/bsd-3-clause/",
+            "since": "0.0.1"
         }
     },
     "classes": {
@@ -46,7 +79,21 @@
             "extension_for": [],
             "module": "itsa-react-maskedinput",
             "namespace": "",
-            "file": "lib/component.jsx",
+            "file": "lib/v.16.0.4.js",
+            "line": 3,
+            "description": "Description here\n\n\n\n<i>Copyright (c) 2016 ItsAsbreuk - http://itsasbreuk.nl</i><br>\nNew BSD License - http://choosealicense.com/licenses/bsd-3-clause/"
+        },
+        "Input": {
+            "name": "Input",
+            "shortname": "Input",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "itsa-react-input",
+            "namespace": "",
+            "file": "lib/itsa-react-input-4.16.0.4.js",
             "line": 3,
             "description": "Description here\n\n\n\n<i>Copyright (c) 2016 ItsAsbreuk - http://itsasbreuk.nl</i><br>\nNew BSD License - http://choosealicense.com/licenses/bsd-3-clause/"
         }
@@ -55,38 +102,7 @@
     "classitems": [
         {
             "file": "lib/component.jsx",
-            "line": 44,
-            "description": "Gets invoked after the Component mounted.\nWill set several refences to internal nodes for quick referal.",
-            "itemtype": "method",
-            "name": "componentDidMount",
-            "since": "0.0.1",
-            "class": "MaskedInput",
-            "module": "itsa-react-maskedinput"
-        },
-        {
-            "file": "lib/component.jsx",
-            "line": 58,
-            "description": "Gets invoked before the Component gets unmounted.\nWill detach some window-eventlisteners.",
-            "itemtype": "method",
-            "name": "componentWillUnmount",
-            "since": "0.0.1",
-            "class": "MaskedInput",
-            "module": "itsa-react-maskedinput"
-        },
-        {
-            "file": "lib/component.jsx",
-            "line": 69,
-            "description": "Detaches eventlisteners.",
-            "itemtype": "method",
-            "name": "detachEvents",
-            "chainable": 1,
-            "since": "0.0.1",
-            "class": "MaskedInput",
-            "module": "itsa-react-maskedinput"
-        },
-        {
-            "file": "lib/component.jsx",
-            "line": 91,
+            "line": 38,
             "description": "Returns the rendered React-Element that serves as the source dom-element",
             "itemtype": "method",
             "name": "element",
@@ -106,7 +122,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 113,
+            "line": 66,
             "description": "Sets the focus on the Component.",
             "itemtype": "method",
             "name": "focus",
@@ -125,7 +141,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 125,
+            "line": 78,
             "description": "Gets the Component\"s internal state. Note, that the this is NOT Redux\"s state.",
             "itemtype": "method",
             "name": "getInitialState",
@@ -138,7 +154,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 133,
+            "line": 86,
             "description": "Sets the focus on the Component.",
             "itemtype": "method",
             "name": "focus",
@@ -149,7 +165,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 141,
+            "line": 94,
             "description": "The method that is called whenever the input-Element changes its value.\nWill update the Redux-store (signupuser.homeaddress);",
             "itemtype": "method",
             "name": "handleChange",
@@ -166,7 +182,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 150,
+            "line": 103,
             "description": "The method that is called whenever the input-Element gets the focus.\nIt will change its internal state, so that the css looks right and\nalso any validation-messages disappear.",
             "itemtype": "method",
             "name": "handleFocus",
@@ -183,7 +199,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 160,
+            "line": 113,
             "description": "The method that is called whenever the input-Element gets blurred.\nIt will change its internal state, so that the css looks right and\nalso any validation-messages appear.",
             "itemtype": "method",
             "name": "handleBlur",
@@ -200,58 +216,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 170,
-            "description": "The method that is called whenever the input-Element gets a keyDown-event.",
-            "itemtype": "method",
-            "name": "handleKeyDown",
-            "params": [
-                {
-                    "name": "e",
-                    "description": "event-payload",
-                    "type": "Object"
-                }
-            ],
-            "since": "0.0.3",
-            "class": "MaskedInput",
-            "module": "itsa-react-maskedinput"
-        },
-        {
-            "file": "lib/component.jsx",
-            "line": 181,
-            "description": "The method that is called whenever the input-Element gets a keyUp-event.",
-            "itemtype": "method",
-            "name": "handleKeyUp",
-            "params": [
-                {
-                    "name": "e",
-                    "description": "event-payload",
-                    "type": "Object"
-                }
-            ],
-            "since": "0.0.3",
-            "class": "MaskedInput",
-            "module": "itsa-react-maskedinput"
-        },
-        {
-            "file": "lib/component.jsx",
-            "line": 192,
-            "description": "The method that is called whenever the input-Element gets a keyPress-event.",
-            "itemtype": "method",
-            "name": "handleKeyPress",
-            "params": [
-                {
-                    "name": "e",
-                    "description": "event-payload",
-                    "type": "Object"
-                }
-            ],
-            "since": "0.0.3",
-            "class": "MaskedInput",
-            "module": "itsa-react-maskedinput"
-        },
-        {
-            "file": "lib/component.jsx",
-            "line": 203,
+            "line": 123,
             "description": "React render-method --> renderes the Component.",
             "itemtype": "method",
             "name": "render",
@@ -264,18 +229,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 214,
-            "description": "Sets eventlisteners.",
-            "itemtype": "method",
-            "name": "setEvents",
-            "chainable": 1,
-            "since": "0.0.1",
-            "class": "MaskedInput",
-            "module": "itsa-react-maskedinput"
-        },
-        {
-            "file": "lib/component.jsx",
-            "line": 239,
+            "line": 141,
             "description": "Whether to autofocus the Component.",
             "itemtype": "property",
             "name": "autoFocus",
@@ -286,7 +240,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 248,
+            "line": 150,
             "description": "The class that should be set on the element",
             "itemtype": "property",
             "name": "className",
@@ -297,7 +251,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 257,
+            "line": 159,
             "description": "The error-message that appears when the element is wrong validated.",
             "itemtype": "property",
             "name": "errorMsg",
@@ -308,7 +262,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 266,
+            "line": 168,
             "description": "Whether the parent-form has been validated.\nThis value is needed to determine if the validate-status should be set.",
             "itemtype": "property",
             "name": "formValidated",
@@ -319,7 +273,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 276,
+            "line": 178,
             "description": "The text that should appear when the element is wrong validated.",
             "itemtype": "property",
             "name": "helpText",
@@ -330,7 +284,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 285,
+            "line": 187,
             "description": "The `id` of the element.",
             "itemtype": "property",
             "name": "id",
@@ -341,7 +295,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 294,
+            "line": 196,
             "description": "Whether to mark the Component when successfully validated.",
             "itemtype": "property",
             "name": "markValidated",
@@ -352,7 +306,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 303,
+            "line": 205,
             "description": "Whether the Component should show an validate-reclamation (star)",
             "itemtype": "property",
             "name": "markValidated",
@@ -363,7 +317,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 312,
+            "line": 214,
             "description": "The `mask` that determines the pattern.\nSee https://github.com/insin/inputmask-core#pattern",
             "itemtype": "property",
             "name": "mask",
@@ -374,7 +328,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 322,
+            "line": 224,
             "description": "The `name` for the element.",
             "itemtype": "property",
             "name": "name",
@@ -385,7 +339,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 331,
+            "line": 233,
             "description": "The `onBlur` function, when happening on the DOM-Element.",
             "itemtype": "property",
             "name": "onBlur",
@@ -396,7 +350,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 340,
+            "line": 242,
             "description": "The `onChange` function, which should update the `state`.",
             "itemtype": "property",
             "name": "onChange",
@@ -407,7 +361,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 349,
+            "line": 251,
             "description": "The `onClick` function, when happening on the DOM-Element.",
             "itemtype": "property",
             "name": "onClick",
@@ -418,7 +372,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 358,
+            "line": 260,
             "description": "The `onFocus` function, when happening on the DOM-Element.",
             "itemtype": "property",
             "name": "onFocus",
@@ -429,7 +383,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 367,
+            "line": 269,
             "description": "The `onKeyDown` function, when happening on the DOM-Element.",
             "itemtype": "property",
             "name": "onKeyDown",
@@ -440,7 +394,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 376,
+            "line": 278,
             "description": "The `onKeyEnter` function, when the enter-key is pressed.",
             "itemtype": "property",
             "name": "onKeyEnter",
@@ -451,7 +405,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 385,
+            "line": 287,
             "description": "The `onKeyPress` function, when happening on the DOM-Element.",
             "itemtype": "property",
             "name": "onKeyPress",
@@ -462,7 +416,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 394,
+            "line": 296,
             "description": "The `onKeyUp` function, when happening on the DOM-Element.",
             "itemtype": "property",
             "name": "onKeyUp",
@@ -473,7 +427,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 403,
+            "line": 305,
             "description": "The `placeholder` for the element.",
             "itemtype": "property",
             "name": "placeholder",
@@ -484,7 +438,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 412,
+            "line": 314,
             "description": "Inline style",
             "itemtype": "property",
             "name": "style",
@@ -495,7 +449,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 421,
+            "line": 323,
             "description": "The `type` of the input-element: either `text` or `password`",
             "itemtype": "property",
             "name": "type",
@@ -506,7 +460,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 430,
+            "line": 332,
             "description": "The tabindex of the Component.",
             "itemtype": "property",
             "name": "type",
@@ -517,7 +471,7 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 439,
+            "line": 341,
             "description": "Whether the property is validated right.",
             "itemtype": "property",
             "name": "validated",
@@ -528,7 +482,776 @@
         },
         {
             "file": "lib/component.jsx",
-            "line": 448,
+            "line": 350,
+            "description": "The `value` of the input-element.",
+            "itemtype": "property",
+            "name": "value",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 49,
+            "description": "componentDidMount will call `this.activatePlaces()`;",
+            "itemtype": "method",
+            "name": "componentDidMount",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 63,
+            "description": "componentWilUnmount does some cleanup.",
+            "itemtype": "method",
+            "name": "componentWillUnmount",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 73,
+            "description": "Sets the focus on the Component.",
+            "itemtype": "method",
+            "name": "focus",
+            "params": [
+                {
+                    "name": "transitionTime",
+                    "description": "transition-time to focus the element into the view",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 95,
+            "description": "The method that is called whenever the input-Element gets blurred.\nIt will change its internal state, so that the css looks right and\nalso any validation-messages appear.",
+            "itemtype": "method",
+            "name": "handleBlur",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 114,
+            "description": "The method that is called whenever the input-Element changes its value.\nWill update the Redux-store (signupuser.homeaddress);",
+            "itemtype": "method",
+            "name": "handleChange",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 131,
+            "description": "The method that is called whenever the input-Element gets clicked.",
+            "itemtype": "method",
+            "name": "handleClick",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 145,
+            "description": "Callback that sets the focus to the descendent element by calling `focus()`",
+            "itemtype": "method",
+            "name": "handleContainerFocus",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 156,
+            "description": "The method that is called whenever the input-Element gets the focus.\nIt will change its internal state, so that the css looks right and\nalso any validation-messages disappear.",
+            "itemtype": "method",
+            "name": "handleFocus",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 177,
+            "description": "The method that is called whenever the input-Element recieves a keyDown.",
+            "itemtype": "method",
+            "name": "handleKeyDown",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 191,
+            "description": "The method that is called whenever the input-Element recieves a keyPress.",
+            "itemtype": "method",
+            "name": "handleKeyPress",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 208,
+            "description": "The method that is called whenever the input-Element recieves a keyUp.",
+            "itemtype": "method",
+            "name": "handleKeyUp",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "event-payload",
+                    "type": "Object"
+                }
+            ],
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 230,
+            "description": "React render-method --> renderes the Component.",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "ReactComponent"
+            },
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 325,
+            "description": "Merges the `data-*` attributes from props into the object",
+            "itemtype": "method",
+            "name": "_mergeDataAttrs",
+            "params": [
+                {
+                    "name": "inputProps",
+                    "description": "the source props which will be extended",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "object all the data-* attributes"
+            },
+            "since": "0.2.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 345,
+            "description": "Whether to autofocus the Component.",
+            "itemtype": "property",
+            "name": "autoFocus",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 354,
+            "description": "The class that should be set on the element",
+            "itemtype": "property",
+            "name": "className",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 363,
+            "description": "The class that should be set on the underlying input-element",
+            "itemtype": "property",
+            "name": "classNameInput",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 372,
+            "description": "The error-message that appears when the element is wrong validated.",
+            "itemtype": "property",
+            "name": "errorMsg",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 381,
+            "description": "Whether the component is disabled",
+            "itemtype": "property",
+            "name": "disabled",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 390,
+            "description": "Whether the parent-form has been validated.\nThis value is needed to determine if the validate-status should be set.",
+            "itemtype": "property",
+            "name": "formValidated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 400,
+            "description": "The text that should appear when the element is wrong validated.",
+            "itemtype": "property",
+            "name": "helpText",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 409,
+            "description": "The `id` of the element.",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 418,
+            "description": "Whether to mark the Component when successfully validated.",
+            "itemtype": "property",
+            "name": "markValidated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 427,
+            "description": "Whether the Component should show an validate-reclamation (star)",
+            "itemtype": "property",
+            "name": "markValidated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 436,
+            "description": "The `name` for the element.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 445,
+            "description": "The `onBlur` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onBlur",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 454,
+            "description": "The `onChange` function, which should update the `state`.",
+            "itemtype": "property",
+            "name": "onChange",
+            "type": "Function",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 463,
+            "description": "The `onClick` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onClick",
+            "type": "Function",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 472,
+            "description": "The `onFocus` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onFocus",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 481,
+            "description": "The `onKeyDown` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onKeyDown",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 490,
+            "description": "The `onKeyEnter` function, when the enter-key is pressed.",
+            "itemtype": "property",
+            "name": "onKeyEnter",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 499,
+            "description": "The `onKeyPress` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onKeyPress",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 508,
+            "description": "The `onKeyUp` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onKeyUp",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 517,
+            "description": "The `placeholder` for the element.",
+            "itemtype": "property",
+            "name": "placeholder",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 526,
+            "description": "Inline style",
+            "itemtype": "property",
+            "name": "style",
+            "type": "object",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 535,
+            "description": "The `type` of the input-element.",
+            "itemtype": "property",
+            "name": "type",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 544,
+            "description": "The tabindex of the Component.",
+            "itemtype": "property",
+            "name": "type",
+            "type": "Number",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 553,
+            "description": "Whether the property is validated right.",
+            "itemtype": "property",
+            "name": "validated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/itsa-react-input-4.16.0.4.js",
+            "line": 562,
+            "description": "The `value` of the input-element.",
+            "itemtype": "property",
+            "name": "value",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "Input",
+            "module": "itsa-react-input"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 30,
+            "description": "Returns the rendered React-Element that serves as the source dom-element",
+            "itemtype": "method",
+            "name": "element",
+            "params": [
+                {
+                    "name": "props",
+                    "description": "props to be passed through to the Component",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "ReactComponent"
+            },
+            "since": "0.0.4",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 48,
+            "description": "Whether to autofocus the Component.",
+            "itemtype": "property",
+            "name": "autoFocus",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 57,
+            "description": "The class that should be set on the element",
+            "itemtype": "property",
+            "name": "className",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 66,
+            "description": "The error-message that appears when the element is wrong validated.",
+            "itemtype": "property",
+            "name": "errorMsg",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 75,
+            "description": "Whether the parent-form has been validated.\nThis value is needed to determine if the validate-status should be set.",
+            "itemtype": "property",
+            "name": "formValidated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 85,
+            "description": "The text that should appear when the element is wrong validated.",
+            "itemtype": "property",
+            "name": "helpText",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 94,
+            "description": "The `id` of the element.",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 103,
+            "description": "Whether to mark the Component when successfully validated.",
+            "itemtype": "property",
+            "name": "markValidated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 112,
+            "description": "Whether the Component should show an validate-reclamation (star)",
+            "itemtype": "property",
+            "name": "markValidated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 121,
+            "description": "The `mask` that determines the pattern.\nSee https://github.com/insin/inputmask-core#pattern",
+            "itemtype": "property",
+            "name": "mask",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 131,
+            "description": "The `name` for the element.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 140,
+            "description": "The `onBlur` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onBlur",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 149,
+            "description": "The `onChange` function, which should update the `state`.",
+            "itemtype": "property",
+            "name": "onChange",
+            "type": "Function",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 158,
+            "description": "The `onClick` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onClick",
+            "type": "Function",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 167,
+            "description": "The `onFocus` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onFocus",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 176,
+            "description": "The `onKeyDown` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onKeyDown",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 185,
+            "description": "The `onKeyEnter` function, when the enter-key is pressed.",
+            "itemtype": "property",
+            "name": "onKeyEnter",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 194,
+            "description": "The `onKeyPress` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onKeyPress",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 203,
+            "description": "The `onKeyUp` function, when happening on the DOM-Element.",
+            "itemtype": "property",
+            "name": "onKeyUp",
+            "type": "Function",
+            "since": "0.1.0",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 212,
+            "description": "The `placeholder` for the element.",
+            "itemtype": "property",
+            "name": "placeholder",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 221,
+            "description": "Inline style",
+            "itemtype": "property",
+            "name": "style",
+            "type": "object",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 230,
+            "description": "The `type` of the input-element: either `text` or `password`",
+            "itemtype": "property",
+            "name": "type",
+            "type": "String",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 239,
+            "description": "The tabindex of the Component.",
+            "itemtype": "property",
+            "name": "type",
+            "type": "Number",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 248,
+            "description": "Whether the property is validated right.",
+            "itemtype": "property",
+            "name": "validated",
+            "type": "Boolean",
+            "since": "0.0.1",
+            "class": "MaskedInput",
+            "module": "itsa-react-maskedinput"
+        },
+        {
+            "file": "lib/v.16.0.4.js",
+            "line": 257,
             "description": "The `value` of the input-element.",
             "itemtype": "property",
             "name": "value",

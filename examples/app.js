@@ -250,6 +250,180 @@
 	    return MyForm;
 	}(React.Component);
 
+	var MyForm2 = function (_React$Component2) {
+	    _inherits(MyForm2, _React$Component2);
+
+	    function MyForm2(props) {
+	        _classCallCheck(this, MyForm2);
+
+	        var _this2 = _possibleConstructorReturn(this, (MyForm2.__proto__ || Object.getPrototypeOf(MyForm2)).call(this, props));
+
+	        var instance = _this2;
+	        instance.state = {
+	            formValid: false,
+	            formValidated: false
+	        };
+	        instance.focusUnvalidated = instance.focusUnvalidated.bind(instance);
+	        instance.formValid = instance.formValid.bind(instance);
+	        instance.handleSubmit = instance.handleSubmit.bind(instance);
+	        return _this2;
+	    }
+
+	    _createClass(MyForm2, [{
+	        key: "focusUnvalidated",
+	        value: function focusUnvalidated() {
+	            var instance = this;
+	            var validated = instance.props.validated;
+	            if (!validated.name) {
+	                instance.refs.name.focus();
+	            } else if (!validated.email) {
+	                instance.refs.email.focus();
+	            } else if (!validated.phone) {
+	                instance.refs.phone.focus();
+	            } else if (!validated.password) {
+	                instance.refs.password.focus();
+	            } else if (!validated.termsAccepted) {
+	                instance.refs.terms.focus();
+	            }
+	        }
+	    }, {
+	        key: "formValid",
+	        value: function formValid() {
+	            var validated = this.props.validated;
+	            return validated.name && validated.email && validated.phone && validated.password && validated.termsAccepted;
+	        }
+	    }, {
+	        key: "handleSubmit",
+	        value: function handleSubmit(e) {
+	            var formValid = this.formValid();
+	            e.preventDefault();
+	            this.setState({
+	                formValid: formValid,
+	                formValidated: true
+	            });
+	            this.props.onSubmit && this.props.onSubmit({
+	                formValid: formValid,
+	                target: this
+	            });
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var formClass = "pure-form pure-form-stacked";
+	            var props = this.props,
+	                formValid = this.state.formValid,
+	                formValidated = this.state.formValidated,
+	                validatedText = formValid ? "valid" : "invalid",
+	                validatedMsg = React.createElement(
+	                "legend",
+	                { className: "formheader" },
+	                "Form is ",
+	                validatedText
+	            ),
+	                generalTermsMsgClass = "checkbox-text" + (formValidated && !props.termsAccepted ? " checkbox-error-text" : "");
+
+	            formValid || (formClass += " invalid");
+
+	            return React.createElement(
+	                "form",
+	                {
+	                    className: formClass,
+	                    key: "1",
+	                    onSubmit: this.handleSubmit },
+	                validatedMsg,
+	                React.createElement(
+	                    "fieldset",
+	                    null,
+	                    React.createElement(Input, {
+	                        autoFocus: true,
+	                        className: "pure-input-1",
+	                        errorMsg: "Enter your name",
+	                        formValidated: formValidated,
+	                        markRequired: true,
+	                        markValidated: true,
+	                        onChange: props.onChangeName,
+	                        placeholder: "Name",
+	                        ref: "name",
+	                        tabIndex: 1,
+	                        validated: props.validated.name,
+	                        value: props.name }),
+	                    React.createElement(Input, {
+	                        className: "pure-input-1",
+	                        errorMsg: "Emailformat is: user@example.com",
+	                        formValidated: formValidated,
+	                        markRequired: true,
+	                        markValidated: true,
+	                        onChange: props.onChangeEmail,
+	                        placeholder: "Email address",
+	                        ref: "email",
+	                        tabIndex: 2,
+	                        validated: props.validated.email,
+	                        value: props.email }),
+	                    React.createElement(MaskedInput, {
+	                        className: "pure-input-1",
+	                        errorMsg: "Phone number format: (555) 555-5555",
+	                        formValidated: formValidated,
+	                        helpText: "format: (555) 555-5555",
+	                        markRequired: true,
+	                        markValidated: true,
+	                        mask: "(111) 111-1111",
+	                        onChange: props.onChangePhone,
+	                        placeholder: "Phone",
+	                        ref: "phone",
+	                        tabIndex: 4,
+	                        validated: props.validated.phone,
+	                        value: props.phone }),
+	                    React.createElement(Input, {
+	                        className: "pure-input-1",
+	                        errorMsg: "Use at least 5 characters",
+	                        formValidated: formValidated,
+	                        markRequired: true,
+	                        markValidated: true,
+	                        onChange: props.onChangePassword,
+	                        placeholder: "Password",
+	                        ref: "password",
+	                        tabIndex: 5,
+	                        type: "password",
+	                        validated: props.validated.password,
+	                        value: props.password }),
+	                    React.createElement(Checkbox, {
+	                        checked: props.termsAccepted,
+	                        formValidated: formValidated,
+	                        onChange: props.onTermsAccepted,
+	                        ref: "terms",
+	                        tabIndex: 7,
+	                        validated: props.validated.termsAccepted }),
+	                    React.createElement(
+	                        "span",
+	                        { className: "itsa-input-required-msg-after" },
+	                        "General terms accepted"
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: generalTermsMsgClass },
+	                        "You need to accept our terms"
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "itsa-input-required-msg-before" },
+	                        "required fields"
+	                    ),
+	                    React.createElement(
+	                        "button",
+	                        {
+	                            className: "pure-button pure-button-primary",
+	                            tabIndex: 5,
+	                            type: "submit" },
+	                        "Validate Form"
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return MyForm2;
+	}(React.Component);
+
 	/*******************************************************
 	 * Event-hanldlers
 	 *******************************************************/
@@ -331,11 +505,12 @@
 	 * props
 	 *******************************************************/
 	var props = {
+	    ign: true,
 	    name: '',
 	    email: '',
 	    password: '',
 	    comment: '',
-	    phone: '',
+	    // phone: '',
 	    termsAccepted: false,
 	    onChangeName: handleChangeName,
 	    onChangeEmail: handleChangeEmail,
@@ -367,15 +542,21 @@
 	/*******************************************************
 	 * React render form
 	 *******************************************************/
-	var renderForm = function renderForm(props) {
-	    ReactDOM.render(React.createElement(MyForm, props), document.getElementById("component-container"));
+	var renderForm = function renderForm(props, start) {
+	    if (start) {
+	        console.warn('render initially');
+	        ReactDOM.render(React.createElement(MyForm, props), document.getElementById("component-container"));
+	    } else {
+	        console.warn('render again');
+	        ReactDOM.render(React.createElement(MyForm2, props), document.getElementById("component-container"));
+	    }
 	};
 
 	/*******************************************************
 	 * Initialization
 	 *******************************************************/
 	validateProps(props);
-	renderForm(props);
+	renderForm(props, true);
 
 /***/ }),
 /* 1 */
@@ -2691,7 +2872,7 @@
 
 
 	// module
-	exports.push([module.id, ".itsa-checkbox {\n  font-size: 0.9em;\n  margin: 0;\n  padding: 0;\n  display: inline-block;\n  position: relative;\n  vertical-align: middle;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  height: 2em;\n  z-index: 1;\n  overflow: hidden;\n  border: 1px solid #CCC;\n  -webkit-tap-highlight-color: transparent;\n  /* remove gray color when pressed on iOS */ }\n\n.itsa-checkbox.bordered {\n  border-radius: 1em; }\n\n.itsa-checkbox.error {\n  border-color: #FF6A6A !important; }\n\n.itsa-checkbox:focus {\n  outline: 0; }\n\n.itsa-checkbox div {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  display: block; }\n\n.itsa-checkbox:focus:not(.disabled):not(.readonly) .itsa-checkbox-on,\n.itsa-checkbox:focus:not(.disabled):not(.readonly) .itsa-checkbox-off {\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);\n  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0, 0, 0, 0.05)), to(rgba(0, 0, 0, 0.2)));\n  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.4) inset; }\n\n.itsa-checkbox:focus:not(.disabled):not(.readonly) .itsa-checkbox-btn {\n  border: solid 1px #888;\n  box-shadow: inset 0 0.17em 0.5em rgba(0, 0, 0, 0.06); }\n\n.itsa-checkbox .itsa-checkbox-constrain {\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  position: relative;\n  top: 0;\n  /* left will be calculated by i-checkbox */ }\n\n.itsa-checkbox .itsa-checkbox-container {\n  position: relative;\n  cursor: pointer;\n  padding: 0;\n  margin: 0;\n  height: 100%;\n  left: 0;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  -webkit-transition: left 0.25s;\n  -moz-transition: left 0.25s;\n  -ms-transition: left 0.25s;\n  -o-transition: left 0.25s;\n  transition: left 0.25s; }\n\n.itsa-checkbox.disabled .itsa-checkbox-container,\n.itsa-checkbox.readonly .itsa-checkbox-container {\n  cursor: default; }\n\n.itsa-checkbox .itsa-checkbox-container.notrans {\n  -webkit-transition: none !important;\n  -moz-transition: none !important;\n  -ms-transition: none !important;\n  -o-transition: all 0s !important;\n  /* opera doesn't support none */\n  transition: none !important; }\n\n.itsa-checkbox .itsa-checkbox-on,\n.itsa-checkbox .itsa-checkbox-off {\n  height: 100%;\n  line-height: 2em;\n  position: static;\n  text-align: center;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  float: left;\n  box-shadow: inset 0 0.3em 0.5em rgba(0, 0, 0, 0.18); }\n\n.itsa-checkbox.bordered .itsa-checkbox-on,\n.itsa-checkbox.bordered .itsa-checkbox-off {\n  border-radius: 1em; }\n\n.itsa-checkbox .itsa-checkbox-on {\n  color: #FFF;\n  background-color: #0078E7;\n  padding-right: 2em;\n  left: 1px; }\n\n.itsa-checkbox .itsa-checkbox-off {\n  background-color: #FFF;\n  color: #444;\n  padding-left: 2em;\n  margin-left: calc(-2em + 2px); }\n\n.itsa-checkbox.disabled .itsa-checkbox-on {\n  background-color: #8BB3D8;\n  color: #EAEDED; }\n\n.itsa-checkbox.disabled .itsa-checkbox-off {\n  background-color: #EAEDED;\n  color: #AAA; }\n\n.itsa-checkbox.bordered .itsa-checkbox-on {\n  padding-right: 1.5em; }\n\n.itsa-checkbox.bordered .itsa-checkbox-off {\n  padding-left: 1.5em; }\n\n.itsa-checkbox .itsa-checkbox-btn {\n  position: relative;\n  z-index: 1;\n  box-shadow: inset 0 0.17em 0.5em rgba(0, 0, 0, 0.18);\n  background-color: #FFF;\n  border: solid 1px #CCC;\n  width: 2em;\n  height: 100%; }\n\n.itsa-checkbox.disabled .itsa-checkbox-btn {\n  background-color: #F9F9F9; }\n\n.itsa-checkbox.bordered .itsa-checkbox-btn {\n  border-radius: 100%; }\n", ""]);
+	exports.push([module.id, ".itsa-checkbox {\n  font-size: 0.9em;\n  margin: 0;\n  padding: 0;\n  display: inline-block;\n  position: relative;\n  vertical-align: middle;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  height: 2em;\n  z-index: 1;\n  overflow: hidden;\n  border: 1px solid #CCC;\n  -webkit-tap-highlight-color: transparent;\n  /* remove gray color when pressed on iOS */ }\n\n.itsa-checkbox.bordered {\n  border-radius: 1em; }\n\n.itsa-checkbox.error {\n  border-color: #FF6A6A !important; }\n\n.itsa-checkbox:focus {\n  outline: 0; }\n\n.itsa-checkbox div {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  display: block; }\n\n.itsa-checkbox:focus:not(.disabled):not(.readonly) .itsa-checkbox-on,\n.itsa-checkbox:focus:not(.disabled):not(.readonly) .itsa-checkbox-off {\n  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000', GradientType=0);\n  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0, 0, 0, 0.05)), to(rgba(0, 0, 0, 0.2)));\n  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.2));\n  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.4) inset; }\n\n.itsa-checkbox:focus:not(.disabled):not(.readonly) .itsa-checkbox-btn {\n  border: solid 1px #888;\n  box-shadow: inset 0 0.17em 0.5em rgba(0, 0, 0, 0.06); }\n\n.itsa-checkbox .itsa-checkbox-constrain {\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  position: relative;\n  top: 0;\n  /* left will be calculated by i-checkbox */ }\n\n.itsa-checkbox .itsa-checkbox-container {\n  position: relative;\n  cursor: pointer;\n  padding: 0;\n  margin: 0;\n  height: 100%;\n  left: 0;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -khtml-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  -webkit-transition: left 0.25s;\n  -moz-transition: left 0.25s;\n  -ms-transition: left 0.25s;\n  -o-transition: left 0.25s;\n  transition: left 0.25s; }\n\n.itsa-checkbox.disabled .itsa-checkbox-container,\n.itsa-checkbox.readonly .itsa-checkbox-container {\n  cursor: default; }\n\n.itsa-checkbox .itsa-checkbox-container.notrans {\n  -webkit-transition: none !important;\n  -moz-transition: none !important;\n  -ms-transition: none !important;\n  -o-transition: all 0s !important;\n  /* opera doesn't support none */\n  transition: none !important; }\n\n.itsa-checkbox .itsa-checkbox-on,\n.itsa-checkbox .itsa-checkbox-off {\n  height: 100%;\n  line-height: 2em;\n  position: static;\n  text-align: center;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  float: left;\n  box-shadow: inset 0 0.3em 0.5em rgba(0, 0, 0, 0.18); }\n\n.itsa-checkbox.bordered .itsa-checkbox-on,\n.itsa-checkbox.bordered .itsa-checkbox-off {\n  border-radius: 1em; }\n\n.itsa-checkbox .itsa-checkbox-on {\n  color: #FFF;\n  background-color: #0078E7;\n  padding-right: 2em;\n  left: 1px; }\n\n.itsa-checkbox .itsa-checkbox-off {\n  background-color: #FFF;\n  color: #444;\n  padding-left: 2em;\n  margin-left: calc(-2em + 2px); }\n\n.itsa-checkbox.disabled .itsa-checkbox-on {\n  background-color: #8BB3D8;\n  color: #EAEDED; }\n\n.itsa-checkbox.disabled .itsa-checkbox-off {\n  background-color: #EAEDED;\n  color: #AAA; }\n\n.itsa-checkbox.bordered .itsa-checkbox-on {\n  padding-right: 1.5em; }\n\n.itsa-checkbox.bordered .itsa-checkbox-off {\n  padding-left: 1.5em; }\n\n.itsa-checkbox .itsa-checkbox-btn {\n  position: relative;\n  z-index: 1;\n  box-shadow: inset 0 0.17em 0.5em rgba(0, 0, 0, 0.18);\n  background-color: #FFF;\n  border: solid 1px #CCC;\n  width: 2em;\n  height: 100%; }\n\n.itsa-checkbox.disabled .itsa-checkbox-btn {\n  background-color: #F9F9F9; }\n\n.itsa-checkbox.bordered .itsa-checkbox-btn {\n  border-radius: 100%; }\n", ""]);
 
 	// exports
 
@@ -24114,6 +24295,7 @@
 	   * @return {ReactComponent} Component instance rendered in `container`.
 	   */
 	  render: function render(nextElement, container, callback) {
+	    console.warn(this._renderSubtreeIntoContainer);
 	    return ReactMount._renderSubtreeIntoContainer(null, nextElement, container, callback);
 	  },
 
@@ -24815,6 +24997,8 @@
 	 * @since 0.0.1
 	*/
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24847,7 +25031,7 @@
 	        instance.state = {
 	            focussed: !!props.autoFocus
 	        };
-	        instance.element = instance.element.bind(instance);
+	        instance.getDefinedComponent = instance.getDefinedComponent.bind(instance);
 	        instance.focus = instance.focus.bind(instance);
 	        instance.handleBlur = instance.handleBlur.bind(instance);
 	        instance.handleChange = instance.handleChange.bind(instance);
@@ -24872,9 +25056,8 @@
 	    _createClass(Input, [{
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
-	            var instance = this,
-	                domNode = ReactDom.findDOMNode(instance);
-	            instance._inputNode = domNode.querySelector("." + MAIN_CLASS_PREFIX + ELEMENT);
+	            var instance = this;
+	            instance._inputNode = instance._domNode.querySelector("." + MAIN_CLASS_PREFIX + ELEMENT);
 	            if (instance.props.autoFocus) {
 	                instance._focusLater = later(function () {
 	                    return instance.focus();
@@ -24893,37 +25076,6 @@
 	        key: "componentWillUnmount",
 	        value: function componentWillUnmount() {
 	            this._focusLater && this._focusLater.cancel();
-	        }
-
-	        /**
-	         * Returns the rendered React-Element that serves as the source dom-element
-	         *
-	         * @method element
-	         * @param props {Object} props to be passed through to the Component
-	         * @return ReactComponent
-	         * @since 0.0.4
-	         */
-
-	    }, {
-	        key: "element",
-	        value: function element(props) {
-	            return React.createElement("input", props);
-	        }
-
-	        /**
-	         * Gets the Component's internal state. Note, that the this is NOT Redux"s state.
-	         *
-	         * @method getInitialState
-	         * @return Object the Component internal initial state
-	         * @since 0.0.1
-	         */
-
-	    }, {
-	        key: "getInitialState",
-	        value: function getInitialState() {
-	            return {
-	                focussed: !!this.props.autoFocus
-	            };
 	        }
 
 	        /**
@@ -25096,7 +25248,18 @@
 	    }, {
 	        key: "handleKeyUp",
 	        value: function handleKeyUp(e) {
-	            this.props.onKeyUp && this.props.onKeyUp(e);
+	            var props = this.props;
+	            if (!props.readOnly && !props.disabled && props.onKeyUp) {
+	                props.onKeyUp(e);
+	            }
+	        }
+	    }, {
+	        key: "getDefinedComponent",
+	        value: function getDefinedComponent() {}
+	    }, {
+	        key: "getAdditionalProps",
+	        value: function getAdditionalProps() {
+	            return {};
 	        }
 
 	        /**
@@ -25116,11 +25279,12 @@
 	                errorMsg = void 0,
 	                help = void 0,
 	                inputProps = void 0,
-	                ariaRequired = void 0;
+	                ariaRequired = void 0,
+	                element = void 0;
 	            var instance = this,
 	                props = instance.props,
-	                element = props.element || instance.element,
 	                value = String(props.value),
+	                Component = instance.getDefinedComponent(!!value),
 	                type = props.type || "text",
 	                readOnly = props.readOnly || false,
 	                disabled = props.disabled || false,
@@ -25173,8 +25337,11 @@
 	                onKeyPress: instance.handleKeyPress,
 	                onKeyUp: instance.handleKeyUp,
 	                placeholder: props.placeholder,
-	                role: "textbox",
 	                readOnly: readOnly,
+	                ref: function ref(inst) {
+	                    instance._inputElement = inst;
+	                },
+	                role: "textbox",
 	                type: type,
 	                value: value
 	            };
@@ -25182,18 +25349,26 @@
 	            // merge all data-props:
 	            instance._mergeDataAttrs(inputProps);
 
+	            if (!Component) {
+	                element = React.createElement("input", inputProps);
+	            } else {
+	                element = React.createElement(Component, _extends({}, inputProps, instance.getAdditionalProps()));
+	            }
 	            return React.createElement(
 	                "div",
 	                {
 	                    className: wrapperClass,
 	                    onFocus: instance.handleContainerFocus,
+	                    ref: function ref(node) {
+	                        return instance._domNode = node;
+	                    },
 	                    style: props.style,
 	                    tabIndex: props.tabIndex },
 	                label,
 	                React.createElement(
 	                    "div",
 	                    { className: MAIN_CLASS_PREFIX + "inputbox" },
-	                    element.call(this, inputProps),
+	                    element,
 	                    errorMsg
 	                ),
 	                help
@@ -27657,7 +27832,6 @@
 	var IE8_Events = void 0;
 
 	var React = __webpack_require__(20),
-	    ReactDom = __webpack_require__(56),
 	    PropTypes = __webpack_require__(222),
 	    later = __webpack_require__(205).later,
 	    MAIN_CLASS = "itsa-checkbox",
@@ -27716,7 +27890,6 @@
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
 	            var instance = this;
-	            instance._domNode = ReactDom.findDOMNode(instance);
 	            IE8_Events = !instance._domNode.addEventListener;
 	            instance._constrainNode = instance._domNode.querySelector("." + MAIN_CLASS_PREFIX + "constrain");
 	            instance._containerNode = instance._domNode.querySelector("." + MAIN_CLASS_PREFIX + "container");
@@ -28086,6 +28259,9 @@
 	                    onClick: instance.handleClick,
 	                    onFocus: instance.handleFocus,
 	                    onKeyPress: instance.handleKeyPress,
+	                    ref: function ref(node) {
+	                        return instance._domNode = node;
+	                    },
 	                    role: "checkbox",
 	                    style: elementStyles,
 	                    tabIndex: tabIndex },
@@ -28397,7 +28573,6 @@
 
 	var React = __webpack_require__(20),
 	    PropTypes = __webpack_require__(222),
-	    ReactDOM = __webpack_require__(56),
 	    Input = __webpack_require__(203),
 	    ReactMaskedInput = __webpack_require__(227);
 
@@ -28418,95 +28593,41 @@
 	    var _this = _possibleConstructorReturn(this, (MaskedInput.__proto__ || Object.getPrototypeOf(MaskedInput)).call(this, props));
 
 	    var instance = _this;
-	    instance.detachEvents = instance.detachEvents.bind(instance);
 	    instance.element = instance.element.bind(instance);
 	    instance.focus = instance.focus.bind(instance);
-	    instance.handleKeyDown = instance.handleKeyDown.bind(instance);
-	    instance.handleKeyUp = instance.handleKeyUp.bind(instance);
-	    instance.handleKeyPress = instance.handleKeyPress.bind(instance);
-	    instance.setEvents = instance.setEvents.bind(instance);
 	    return _this;
 	  }
 
 	  /**
-	   * Gets invoked after the Component mounted.
-	   * Will set several refences to internal nodes for quick referal.
+	   * Returns the rendered React-Element that serves as the source dom-element
 	   *
-	   * @method componentDidMount
-	   * @since 0.0.1
+	   * @method element
+	   * @param props {Object} props to be passed through to the Component
+	   * @return ReactComponent
+	   * @since 0.0.4
 	   */
 
 
 	  _createClass(MaskedInput, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      var instance = this;
-	      instance._node = ReactDOM.findDOMNode(this);
-	      IE8_Events = !instance._node.addEventListener;
-	      instance.setEvents();
-	    }
-
-	    /**
-	     * Gets invoked before the Component gets unmounted.
-	     * Will detach some window-eventlisteners.
-	     *
-	     * @method componentWillUnmount
-	     * @since 0.0.1
-	     */
-
-	  }, {
-	    key: "componentWillUnmount",
-	    value: function componentWillUnmount() {
-	      this.detachEvents();
-	    }
-
-	    /**
-	     * Detaches eventlisteners.
-	     *
-	     * @method detachEvents
-	     * @chainable
-	     * @since 0.0.1
-	     */
-
-	  }, {
-	    key: "detachEvents",
-	    value: function detachEvents() {
-	      var instance = this;
-	      if (IE8_Events) {
-	        instance._node.detachEvent(ON + KEYDOWN, this.handleKeyDown);
-	        instance._node.detachEvent(ON + KEYUP, this.handleKeyUp);
-	        instance._node.detachEvent(ON + KEYPRESS, this.handleKeyPress);
-	      } else {
-	        instance._node.removeEventListener(KEYDOWN, this.handleKeyDown, true);
-	        instance._node.removeEventListener(KEYUP, this.handleKeyUp, true);
-	        instance._node.removeEventListener(KEYPRESS, this.handleKeyPress, true);
-	      }
-	      return instance;
-	    }
-
-	    /**
-	     * Returns the rendered React-Element that serves as the source dom-element
-	     *
-	     * @method element
-	     * @param props {Object} props to be passed through to the Component
-	     * @return ReactComponent
-	     * @since 0.0.4
-	     */
-
-	  }, {
 	    key: "element",
 	    value: function element(inputProps) {
 	      // in case we are using `react-maskedinput`, then it doesn"t accept an empty value
 	      // once it already has content. This makes it impossible to emtpy.
 	      // therefore we need to empty the maks by hacking it:
 
-	      var type = this.props.type === "password" ? "password" : "text",
-	          maskComponent = this.refs.mask; // only there when already rendered before
+	      var instance = this,
+	          type = instance.props.type === "password" ? "password" : "text",
+	          maskComponent = instance._maskComponent; // only there when already rendered before
 
 	      if (maskComponent && !inputProps.value) {
 	        maskComponent.mask.setValue();
 	      }
-	      return React.createElement(ReactMaskedInput, _extends({ mask: this.props.mask, ref: "mask" }, inputProps, { type: type }));
+	      return React.createElement(ReactMaskedInput, _extends({ mask: this.props.mask,
+	        ref: function ref(inst) {
+	          return instance._maskComponent = inst;
+	        }
+	      }, inputProps, {
+	        type: type }));
 	    }
 
 	    /**
@@ -28521,7 +28642,7 @@
 	  }, {
 	    key: "focus",
 	    value: function focus(transitionTime) {
-	      return this.refs["input-element"].focus(transitionTime);
+	      return this._inputElement.focus(transitionTime);
 	    }
 
 	    /**
@@ -28570,48 +28691,6 @@
 	     */
 
 	    /**
-	     * The method that is called whenever the input-Element gets a keyDown-event.
-	     *
-	     * @method handleKeyDown
-	     * @param e {Object} event-payload
-	     * @since 0.0.3
-	     */
-
-	  }, {
-	    key: "handleKeyDown",
-	    value: function handleKeyDown(e) {
-	      this.props.onKeyDown && this.props.onKeyDown(e);
-	    }
-
-	    /**
-	     * The method that is called whenever the input-Element gets a keyUp-event.
-	     *
-	     * @method handleKeyUp
-	     * @param e {Object} event-payload
-	     * @since 0.0.3
-	     */
-
-	  }, {
-	    key: "handleKeyUp",
-	    value: function handleKeyUp(e) {
-	      this.props.onKeyUp && this.props.onKeyUp(e);
-	    }
-
-	    /**
-	     * The method that is called whenever the input-Element gets a keyPress-event.
-	     *
-	     * @method handleKeyPress
-	     * @param e {Object} event-payload
-	     * @since 0.0.3
-	     */
-
-	  }, {
-	    key: "handleKeyPress",
-	    value: function handleKeyPress(e) {
-	      this.props.onKeyPress && this.props.onKeyPress(e);
-	    }
-
-	    /**
 	     * React render-method --> renderes the Component.
 	     *
 	     * @method render
@@ -28622,31 +28701,12 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      return React.createElement(Input, _extends({}, this.props, { element: this.element, ref: "input-element" }));
-	    }
-
-	    /**
-	     * Sets eventlisteners.
-	     *
-	     * @method setEvents
-	     * @chainable
-	     * @since 0.0.1
-	     */
-
-	  }, {
-	    key: "setEvents",
-	    value: function setEvents() {
 	      var instance = this;
-	      if (IE8_Events) {
-	        instance._node.attachEvent(ON + KEYDOWN, this.handleKeyDown);
-	        instance._node.attachEvent(ON + KEYUP, this.handleKeyUp);
-	        instance._node.attachEvent(ON + KEYPRESS, this.handleKeyPress);
-	      } else {
-	        instance._node.addEventListener(KEYDOWN, this.handleKeyDown, true);
-	        instance._node.addEventListener(KEYUP, this.handleKeyUp, true);
-	        instance._node.addEventListener(KEYPRESS, this.handleKeyPress, true);
-	      }
-	      return instance;
+	      return React.createElement(Input, _extends({}, instance.props, {
+	        element: instance.element,
+	        ref: function ref(inst) {
+	          return instance._inputElement = inst;
+	        } }));
 	    }
 	  }]);
 
@@ -28843,7 +28903,7 @@
 	   * @type String
 	   * @since 0.0.1
 	  */
-	  type: React.PropTypes.oneOf(["text", "password"]),
+	  type: PropTypes.oneOf(["text", "password"]),
 
 	  /**
 	   * The tabindex of the Component.
@@ -28879,7 +28939,11 @@
 /* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	exports.__esModule = true;
 
 	var _extends = Object.assign || function (target) {
 	  for (var i = 1; i < arguments.length; i++) {
@@ -28891,22 +28955,45 @@
 	  }return target;
 	};
 
+	var _react = __webpack_require__(20);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(222);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _inputmaskCore = __webpack_require__(228);
+
+	var _inputmaskCore2 = _interopRequireDefault(_inputmaskCore);
+
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+
 	function _objectWithoutProperties(obj, keys) {
 	  var target = {};for (var i in obj) {
 	    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
 	  }return target;
 	}
 
-	function _defineProperty(obj, key, value) {
-	  if (key in obj) {
-	    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-	  } else {
-	    obj[key] = value;
-	  }return obj;
+	function _classCallCheck(instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
 	}
 
-	var React = __webpack_require__(20);
-	var InputMask = __webpack_require__(228);
+	function _possibleConstructorReturn(self, call) {
+	  if (!self) {
+	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	  }return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+	}
+
+	function _inherits(subClass, superClass) {
+	  if (typeof superClass !== "function" && superClass !== null) {
+	    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+	  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	}
 
 	var KEYCODE_Z = 90;
 	var KEYCODE_Y = 89;
@@ -28960,23 +29047,22 @@
 	  } catch (e) {/* not focused or not visible */}
 	}
 
-	var MaskedInput = React.createClass({
-	  displayName: 'MaskedInput',
+	var MaskedInput = function (_React$Component) {
+	  _inherits(MaskedInput, _React$Component);
 
-	  propTypes: {
-	    mask: React.PropTypes.string.isRequired,
+	  function MaskedInput(props) {
+	    _classCallCheck(this, MaskedInput);
 
-	    formatCharacters: React.PropTypes.object,
-	    placeholderChar: React.PropTypes.string
-	  },
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      value: ''
-	    };
-	  },
+	    _this._onChange = _this._onChange.bind(_this);
+	    _this._onKeyDown = _this._onKeyDown.bind(_this);
+	    _this._onPaste = _this._onPaste.bind(_this);
+	    _this._onKeyPress = _this._onKeyPress.bind(_this);
+	    return _this;
+	  }
 
-	  componentWillMount: function componentWillMount() {
+	  MaskedInput.prototype.componentWillMount = function componentWillMount() {
 	    var options = {
 	      pattern: this.props.mask,
 	      value: this.props.value,
@@ -28985,10 +29071,10 @@
 	    if (this.props.placeholderChar) {
 	      options.placeholderChar = this.props.placeholderChar;
 	    }
-	    this.mask = new InputMask(options);
-	  },
+	    this.mask = new _inputmaskCore2.default(options);
+	  };
 
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	  MaskedInput.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
 	    if (this.props.mask !== nextProps.mask && this.props.value !== nextProps.mask) {
 	      // if we get a new value and a new mask at the same time
 	      // check if the mask.value is still the initial value
@@ -29004,36 +29090,36 @@
 	    } else if (this.props.value !== nextProps.value) {
 	      this.mask.setValue(nextProps.value);
 	    }
-	  },
+	  };
 
-	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
+	  MaskedInput.prototype.componentWillUpdate = function componentWillUpdate(nextProps, nextState) {
 	    if (nextProps.mask !== this.props.mask) {
 	      this._updatePattern(nextProps);
 	    }
-	  },
+	  };
 
-	  componentDidUpdate: function componentDidUpdate(prevProps) {
+	  MaskedInput.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
 	    if (prevProps.mask !== this.props.mask && this.mask.selection.start) {
 	      this._updateInputSelection();
 	    }
-	  },
+	  };
 
-	  _updatePattern: function _updatePattern(props) {
+	  MaskedInput.prototype._updatePattern = function _updatePattern(props) {
 	    this.mask.setPattern(props.mask, {
 	      value: this.mask.getRawValue(),
 	      selection: getSelection(this.input)
 	    });
-	  },
+	  };
 
-	  _updateMaskSelection: function _updateMaskSelection() {
+	  MaskedInput.prototype._updateMaskSelection = function _updateMaskSelection() {
 	    this.mask.selection = getSelection(this.input);
-	  },
+	  };
 
-	  _updateInputSelection: function _updateInputSelection() {
+	  MaskedInput.prototype._updateInputSelection = function _updateInputSelection() {
 	    setSelection(this.input, this.mask.selection);
-	  },
+	  };
 
-	  _onChange: function _onChange(e) {
+	  MaskedInput.prototype._onChange = function _onChange(e) {
 	    // console.log('onChange', JSON.stringify(getSelection(this.input)), e.target.value)
 
 	    var maskValue = this.mask.getValue();
@@ -29054,9 +29140,9 @@
 	    if (this.props.onChange) {
 	      this.props.onChange(e);
 	    }
-	  },
+	  };
 
-	  _onKeyDown: function _onKeyDown(e) {
+	  MaskedInput.prototype._onKeyDown = function _onKeyDown(e) {
 	    // console.log('onKeyDown', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
 
 	    if (isUndo(e)) {
@@ -29095,9 +29181,9 @@
 	        }
 	      }
 	    }
-	  },
+	  };
 
-	  _onKeyPress: function _onKeyPress(e) {
+	  MaskedInput.prototype._onKeyPress = function _onKeyPress(e) {
 	    // console.log('onKeyPress', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
 
 	    // Ignore modified key presses
@@ -29115,9 +29201,9 @@
 	        this.props.onChange(e);
 	      }
 	    }
-	  },
+	  };
 
-	  _onPaste: function _onPaste(e) {
+	  MaskedInput.prototype._onPaste = function _onPaste(e) {
 	    // console.log('onPaste', JSON.stringify(getSelection(this.input)), e.clipboardData.getData('Text'), e.target.value)
 
 	    e.preventDefault();
@@ -29131,62 +29217,80 @@
 	        this.props.onChange(e);
 	      }
 	    }
-	  },
+	  };
 
-	  _getDisplayValue: function _getDisplayValue() {
+	  MaskedInput.prototype._getDisplayValue = function _getDisplayValue() {
 	    var value = this.mask.getValue();
 	    return value === this.mask.emptyValue ? '' : value;
-	  },
+	  };
 
-	  _keyPressPropName: function _keyPressPropName() {
+	  MaskedInput.prototype._keyPressPropName = function _keyPressPropName() {
 	    if (typeof navigator !== 'undefined') {
 	      return navigator.userAgent.match(/Android/i) ? 'onBeforeInput' : 'onKeyPress';
 	    }
 	    return 'onKeyPress';
-	  },
+	  };
 
-	  _getEventHandlers: function _getEventHandlers() {
-	    return _defineProperty({
+	  MaskedInput.prototype._getEventHandlers = function _getEventHandlers() {
+	    var _ref;
+
+	    return _ref = {
 	      onChange: this._onChange,
 	      onKeyDown: this._onKeyDown,
 	      onPaste: this._onPaste
-	    }, this._keyPressPropName(), this._onKeyPress);
-	  },
+	    }, _ref[this._keyPressPropName()] = this._onKeyPress, _ref;
+	  };
 
-	  focus: function focus() {
+	  MaskedInput.prototype.focus = function focus() {
 	    this.input.focus();
-	  },
+	  };
 
-	  blur: function blur() {
+	  MaskedInput.prototype.blur = function blur() {
 	    this.input.blur();
-	  },
+	  };
 
-	  render: function render() {
-	    var _this = this;
+	  MaskedInput.prototype.render = function render() {
+	    var _this2 = this;
 
 	    var ref = function ref(r) {
-	      return _this.input = r;
+	      _this2.input = r;
 	    };
 	    var maxLength = this.mask.pattern.length;
 	    var value = this._getDisplayValue();
 	    var eventHandlers = this._getEventHandlers();
-	    var _props = this.props;
-	    var _props$size = _props.size;
-	    var size = _props$size === undefined ? maxLength : _props$size;
-	    var _props$placeholder = _props.placeholder;
-	    var placeholder = _props$placeholder === undefined ? this.mask.emptyValue : _props$placeholder;
-	    var _props2 = this.props;
-	    var placeholderChar = _props2.placeholderChar;
-	    var formatCharacters = _props2.formatCharacters;
+	    var _props = this.props,
+	        _props$size = _props.size,
+	        size = _props$size === undefined ? maxLength : _props$size,
+	        _props$placeholder = _props.placeholder,
+	        placeholder = _props$placeholder === undefined ? this.mask.emptyValue : _props$placeholder;
 
-	    var cleanedProps = _objectWithoutProperties(_props2, ['placeholderChar', 'formatCharacters']);
+	    var _props2 = this.props,
+	        placeholderChar = _props2.placeholderChar,
+	        formatCharacters = _props2.formatCharacters,
+	        cleanedProps = _objectWithoutProperties(_props2, ['placeholderChar', 'formatCharacters']); // eslint-disable-line
+
 
 	    var inputProps = _extends({}, cleanedProps, eventHandlers, { ref: ref, maxLength: maxLength, value: value, size: size, placeholder: placeholder });
-	    return React.createElement('input', inputProps);
-	  }
-	});
+	    return _react2.default.createElement('input', inputProps);
+	  };
 
-	module.exports = MaskedInput;
+	  return MaskedInput;
+	}(_react2.default.Component);
+
+	MaskedInput.propTypes = process.env.NODE_ENV !== "production" ? {
+	  mask: _propTypes2.default.string.isRequired,
+
+	  formatCharacters: _propTypes2.default.object,
+	  placeholderChar: _propTypes2.default.string
+	} : {};
+
+	MaskedInput.defaultProps = {
+	  value: ''
+	};
+
+	exports.default = MaskedInput;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
 /* 228 */
